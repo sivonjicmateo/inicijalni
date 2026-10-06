@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberShield Croatia - Kontakt</title>
+    <link rel="stylesheet" href="stil.css">
+    
+    <!-- Leaflet CSS i JS za kartu -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">🛡️ CyberShield Croatia</a>
+        <nav>
+            <a href="index.html">Početna</a>
+            <a href="o-nama.html">O nama</a>
+            <a href="usluge.html">Usluge i Cijene</a>
+            <a href="blog.html">Blog</a>
+            <a href="kontakt.html" class="aktivno">Kontakt</a>
+        </nav>
+    </header>
+
+    <div class="kontejner">
+        <div class="kartica">
+            <h2>Kontaktirajte nas</h2>
+            <p>Javite nam se s bilo kakvim pitanjem vezanim uz sigurnost vašeg sustava.</p>
+
+            <form onsubmit="posaljiPoruku(event)"
+                action="https://formspree.io/f/moeqgzgw"
+                method="POST">
+                <label for="ime">Ime i Prezime:</label>
+                <input type="text" id="ime" required>
+
+                <label for="email">E-mail adresa:</label>
+                <input type="email" id="email" required>
+
+                <label for="poruka">Vaša Poruka:</label>
+                <textarea id="poruka" rows="4" required></textarea>
+
+                <button type="submit" class="gumb" style="margin-top: 15px;">Pošalji poruku</button>
+            </form>
+            <p id="potvrda" style="color: green; font-weight: bold; display: none; margin-top: 15px;">Poruka je uspješno poslana!</p>
+        </div>
+
+        <div class="kartica">
+            <h3>Lokacija ureda</h3>
+            <p>📍 Radnička cesta 42, 10000 Zagreb</p>
+            <p>⏰ Radno vrijeme: Ponedjeljak - Petak: 08:00 - 16:00</p>
+            
+            <!-- Karta -->
+            <div id="mapa" style="height: 250px; border-radius: 5px; margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-sadrzaj">
+            <div class="footer-kolona">
+                <h4>CyberShield Croatia</h4>
+                <p>Adresa: Radnička cesta 42, Zagreb<br>Telefon: 01 2345 678<br>Email: info@cybershield.hr</p>
+                <div class="drustvene-mreze">
+                    <a href="https://facebook.com" target="_blank">Facebook</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-kolona">
+                <h4>Newsletter</h4>
+                <p>Prijavite se za primanje sigurnosnih savjeta.</p>
+                <form onsubmit="alert('Hvala na prijavi!'); return false;">
+                    <input type="email" placeholder="Vaš e-mail..." required>
+                    <button type="submit" class="gumb" style="margin-top: 8px;">Prijava</button>
+                </form>
+                <p class="privatnost-tekst">Vaš e-mail koristimo isključivo za slanje edukativnog sadržaja i ne dijelimo ga s drugima.</p>
+            </div>
+        </div>
+        <div class="kopirajt">© 2026 CyberShield Croatia. Sva prava pridržana.</div>
+    </footer>
+
+    <script>
+        // Validacija forme
+        function posaljiPoruku(event) {
+            event.preventDefault();
+            var email = document.getElementById('email').value;
+            
+            if (email.includes('@')) {
+                document.getElementById('potvrda').style.display = 'block';
+            } else {
+                alert('Unesite valjanu e-mail adresu!');
+            }
+        }
+
+        // Učitavanje karte
+        window.onload = function() {
+            var map = L.map('mapa').setView([45.8033, 16.0028], 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            L.marker([45.8033, 16.0028]).addTo(map).bindPopup('CyberShield Croatia');
+        };
+    </script>
+
+</body>
+</html>
