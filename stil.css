@@ -141,10 +141,18 @@ footer {
     margin-bottom: 12px;
 }
 
-.drustvene-mreze a {
-    color: #38bdf8;
-    text-decoration: none;
-    margin-right: 15px;
+.drustvene-mreze {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px; 
+    margin-top: 15px; 
+}
+
+
+.drustvene-mreze img {
+    width: 32px !important;
+    height: 32px !important;
+    object-fit: contain;
 }
 
 .privatnost-tekst {
