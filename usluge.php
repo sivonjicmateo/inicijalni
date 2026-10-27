@@ -6,6 +6,68 @@
     <link rel="stylesheet" href="stil.css">
 </head>
 <body>
+<?php
+// 1. Definiranje konstante za PDV (25%)
+const PDV = 0.25;
+
+// Definiranje naziva i cijena usluga bez PDV-a
+$usluga1_naziv = "Procjena rizika";
+$usluga1_cijena = 450;
+
+$usluga2_naziv = "Sigurnosna analiza";
+$usluga2_cijena = 1280;
+
+$usluga3_naziv = "Edukacija zaposlenika";
+$usluga3_cijena = 300;
+
+// 2. Izračun iznosa PDV-a i ukupne cijene za svaku uslugu
+$usluga1_pdv = $usluga1_cijena * PDV;
+$usluga1_ukupno = $usluga1_cijena + $usluga1_pdv;
+
+$usluga2_pdv = $usluga2_cijena * PDV;
+$usluga2_ukupno = $usluga2_cijena + $usluga2_pdv;
+
+$usluga3_pdv = $usluga3_cijena * PDV;
+$usluga3_ukupno = $usluga3_cijena + $usluga3_pdv;
+?>
+
+<!-- 3. Ispis tablice s iznosima u hrvatskom zapisu -->
+<table border="1" cellpadding="5" style="border-collapse: collapse; text-align: left;">
+    <thead>
+        <tr style="background-color: #f2f2f2;">
+            <th>Usluga</th>
+            <th>Bez PDV-a</th>
+            <th>PDV</th>
+            <th>Ukupno</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?php echo $usluga1_naziv; ?></td>
+            <td><?php echo number_format($usluga1_cijena, 2, ',', '.') . " €"; ?></td>
+            <td><?php echo number_format($usluga1_pdv, 2, ',', '.') . " €"; ?></td>
+            <td><?php echo number_format($usluga1_ukupno, 2, ',', '.') . " €"; ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $usluga2_naziv; ?></td>
+            <td><?php echo number_format($usluga2_cijena, 2, ',', '.') . " €"; ?></td>
+            <td><?php echo number_format($usluga2_pdv, 2, ',', '.') . " €"; ?></td>
+            <td><?php echo number_format($usluga2_ukupno, 2, ',', '.') . " €"; ?></td>
+        </tr>
+        <tr>
+            <td><?php echo $usluga3_naziv; ?></td>
+            <td><?php echo number_format($usluga3_cijena, 2, ',', '.') . " €"; ?></td>
+            <td><?php echo number_format($usluga3_pdv, 2, ',', '.') . " €"; ?></td>
+            <td><?php echo number_format($usluga3_ukupno, 2, ',', '.') . " €"; ?></td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+
+<!-- 4. Ispis datuma ažuriranja -->
+<p>Cijene ažurirane: <?php echo date("j. n. Y."); ?></p>
+
 
     <div class="kontejner">
         <div class="kartica">
@@ -65,6 +127,21 @@
             </div>
         </div>
         <div class="kopirajt">© 2026 CyberShield Croatia. Sva prava pridržana.</div>
+        <?php
+// TSD-4RT | inicijali | 27.10.2026.
+
+// 1. Izračun godina na tržištu (2026 - 2019 = 7 godina)
+$godinaOsnutka = 2019;
+$x = date("Y") - $godinaOsnutka;
+echo "Na tržištu od 2019. — već " . $x . " godina<br><br>";
+
+// 2. Čišćenje e-pošte i ispis mailto: poveznice
+$email = " Info@SigurnaMreza.HR ";
+$cisti_email = strtolower(trim($email));
+
+echo "<a href='mailto:" . $cisti_email . "'>" . $cisti_email . "</a>";
+?>
+
     </footer>
 
 </body>
